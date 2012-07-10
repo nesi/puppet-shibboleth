@@ -17,7 +17,6 @@ class shibboleth::service::install(
 
 			package{'libapache2-mod-shib2':
 				ensure 	=> present,
-				require	=> Package['apache'],
 			}
 		}
 		# Untested!
