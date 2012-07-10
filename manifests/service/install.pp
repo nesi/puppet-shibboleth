@@ -29,7 +29,10 @@ class shibboleth::service::install(
 			    gpgcheck => 1,
 			    gpgkey => "http://download.opensuse.org/repositories/security:/shibboleth/${releasever}/repodata/repomd.xml.key",
 			}
-			package{'sibboleth': ensure => present}
+			package{'sibboleth':
+				ensure => present,
+				require => Yumrepo['shibboleth'],
+			}
 		}
 	}
 }
