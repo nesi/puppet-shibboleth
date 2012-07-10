@@ -20,6 +20,7 @@ class shibboleth::service::install(
 				require	=> Package['apache'],
 			}
 		}
+		# Untested!
 		CentOS:{
 			yumrepo { "shibboleth":
 			    descr => 'Shibboleth $releasever - $basearch',
@@ -35,4 +36,6 @@ class shibboleth::service::install(
 			}
 		}
 	}
+
+	
 }
