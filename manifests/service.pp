@@ -4,13 +4,15 @@
 # Should work for other Shibboleth Federations
 
 class shibboleth::service(
-	$metadatacert
+	$metadatacert,
+	$httpd 			= 'apache2'
 
 ){
 	case $operatingsystem {
 		Ubuntu:{
 			class{'shibboleth::service::install':
-				metadatacert => $metadatacert,
+				metadatacert 	=> $metadatacert,
+				httpd			=> $httpd,
 			}
 		}
 		default:{
