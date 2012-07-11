@@ -12,7 +12,11 @@ class shibboleth::service::install(
 # Install packages
 	case $operatingsystem{
 		Ubuntu:{
-			package{'libshibsp4': ensure => present}
+			$libshibsp = $lsbmajdistrelease ?{
+				'12'	=> 'libshibsp5',
+				default => 'libshibsp4',
+			}
+			package{$libshibsp: ensure => present}
 			package{'libshibsp-doc': ensure => present}
 
 			package{'libapache2-mod-shib2':
