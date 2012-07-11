@@ -6,7 +6,7 @@
 # include shibboleth::service
 
 class shibboleth::service::install(
-	
+	$metadatacert	
 ){
 
 # Install packages
@@ -40,5 +40,13 @@ class shibboleth::service::install(
 		}
 	}
 
+	# Jump to Ruby to get extract the file name
+	$metadatacert_file = inline_template("<%= metadatacert.split('/').last  %>")
+
+	exec{'get_metadatacert':
+		path	=> ['/usr/bin'],
+		command => "wget ${metadatacert} -O /etc/shibboleth/${metadatacert_file}",
+		creates => "/etc/shibboleth/${metadatacert_file}",
+	}
 	
 }

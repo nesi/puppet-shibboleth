@@ -4,12 +4,13 @@
 # Should work for other Shibboleth Federations
 
 class shibboleth::service(
+	$metadatacert
 
 ){
 	case $operatingsystem {
 		Ubuntu:{
 			class{'shibboleth::service::install':
-
+				metadatacert => $metadatacert,
 			}
 		}
 		default:{
