@@ -7,7 +7,9 @@
 
 class shibboleth::service::install(
 	$metadatacert,
-	$httpd	
+	$httpd,
+	$sp_domainname,
+	$handler_ssl
 ){
 
 # Install packages

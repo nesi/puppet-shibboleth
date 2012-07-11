@@ -5,14 +5,17 @@
 
 class shibboleth::service(
 	$metadatacert,
-	$httpd 			= 'apache2'
-
+	$httpd 			= 'apache2',
+	$sp_domainname	= $fqdn,
+	$handler_ssl	= true
 ){
 	case $operatingsystem {
 		Ubuntu:{
 			class{'shibboleth::service::install':
 				metadatacert 	=> $metadatacert,
 				httpd			=> $httpd,
+				sp_domainname 	=> $sp_domainname,
+				handler_ssl		=> $handler_ssl,
 			}
 		}
 		default:{
