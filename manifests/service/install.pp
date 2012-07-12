@@ -71,11 +71,12 @@ class shibboleth::service::install(
 		notify 	=> Service[$httpd],
 	}
 
+	# Update attribute map every 21 days
 	if $attribute_map_URL {
 		exec{'get_attribute_map':
 			path	=> ['/usr/bin'],
 			command => "wget ${attribute_map_URL} -O ${attribute_map_path}",
-			creates => $attribute_map_path,
+			unless => "test `find ${attribute_map_path} -mtime +21`",
 			require => Package[$mod_shib],
 			notify	=> Service[$httpd],
 		}
