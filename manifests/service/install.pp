@@ -18,7 +18,8 @@ class shibboleth::service::install(
 	$idp_URL,
 	$contact_email,
 	$attribute_map_URL,
-	$attribute_map_path
+	$attribute_map_path,
+	$support_ECP
 ){
 
 # Install packages
@@ -34,6 +35,13 @@ class shibboleth::service::install(
 			$mod_shib = 'libapache2-mod-shib2'
 			package{$mod_shib:
 				ensure 	=> present,
+			}
+			exec{'enable_mod_shib':
+				path 	=> ['/usr/sbin'],
+				command	=> "a2enmod shib2",
+				creates	=> '/etc/apache2/mods-enabled/shib2.load',
+				require => Package[$mod_shib],
+				notify  => Service[$http],
 			}
 		}
 		# Untested!
@@ -53,7 +61,6 @@ class shibboleth::service::install(
 			}
 		}
 	}
-
 
 	exec{'get_metadata_cert':
 		path	=> ['/usr/bin'],

@@ -3,6 +3,11 @@
 # Shibboleth Service Provider
 # Should work for other Shibboleth Federations
 
+# NOTE: This manifest does NOT create the shibboleth back channel
+# certificate (/etc/shibboleth/sp-cert.pem) and key (/etc/shibboleth/sp-key.pem)
+# It should create these on the puppet server in the private file
+# store and deploy them... or something cleverer.
+
 class shibboleth::service(
 	$metadata_cert_URL,
 	$metadata_provider_URL 	= false,
@@ -12,7 +17,8 @@ class shibboleth::service(
 	$discovery_URL 			= false,
 	$idp_URL				= false,
 	$contact_email,
-	$attribute_map_URL		= false
+	$attribute_map_URL		= false,
+	$support_ECP			= false
 ){
 
 	# Jump to Ruby to get extract the file names
@@ -51,6 +57,7 @@ class shibboleth::service(
 					contact_email 			=> $contact_email,
 					attribute_map_URL 		=> $attribute_map_URL,
 					attribute_map_path		=> $attribute_map_path,
+					support_ECP 			=> $support_ECP,
 				}
 			}
 			default:{
