@@ -41,7 +41,7 @@ class shibboleth::service::install(
 				command	=> "a2enmod shib2",
 				creates	=> '/etc/apache2/mods-enabled/shib2.load',
 				require => Package[$mod_shib],
-				notify  => Service[$http],
+				notify  => Service[$httpd],
 			}
 		}
 		# Untested!
