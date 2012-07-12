@@ -76,7 +76,7 @@ class shibboleth::service::install(
 		exec{'get_attribute_map':
 			path	=> ['/usr/bin'],
 			command => "wget ${attribute_map_URL} -O ${attribute_map_path}",
-			unless => "test `find ${attribute_map_path} -mtime +21`",
+			onlyif	=> "test `find ${attribute_map_path} -mtime +21`",
 			require => Package[$mod_shib],
 			notify	=> Service[$httpd],
 		}
