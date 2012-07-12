@@ -7,7 +7,7 @@
 
 class shibboleth::service::install(
 	$metadata_cert_URL,
-	$metadate_cert_file,
+	$metadata_cert_file,
 	$metadata_cert_path,
 	$metadata_provider_URL,
 	$metadata_provider_file,
@@ -55,7 +55,7 @@ class shibboleth::service::install(
 	}
 
 
-	exec{'get_metadatacert':
+	exec{'get_metadata_cert':
 		path	=> ['/usr/bin'],
 		command => "wget ${metadata_cert_URL} -O ${metadata_cert_path}",
 		creates => $metadata_cert_path,

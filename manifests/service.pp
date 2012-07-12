@@ -40,7 +40,7 @@ class shibboleth::service(
 				class{'shibboleth::service::install':
 					metadata_cert_URL 		=> $metadata_cert_URL,
 					metadata_cert_file		=> $metadata_cert_file,
-					metadate_cert_path		=> $metadate_cert_path,
+					metadata_cert_path		=> $metadata_cert_path,
 					metadata_provider_URL	=> $metadata_provider_URL,
 					metadata_provider_file	=> $metadata_provider_file,
 					httpd					=> $httpd,
