@@ -37,8 +37,7 @@ class shibboleth::service::install(
 				ensure 	=> present,
 			}
 			exec{'enable_mod_shib':
-				path 	=> ['/usr/sbin'],
-				command	=> 'a2enmod shib2',
+				command	=> '/usr/sbin/a2enmod shib2',
 				creates	=> '/etc/apache2/mods-enabled/shib2.load',
 				require => Package[$mod_shib],
 				notify  => Service[$httpd],
