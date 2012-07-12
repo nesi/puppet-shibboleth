@@ -12,7 +12,7 @@ class shibboleth::service(
 	$discovery_URL 			= false,
 	$idp_URL				= false,
 	$contact_email,
-	$attribute_map_URL		= false,
+	$attribute_map_URL		= false
 ){
 
 	# Jump to Ruby to get extract the file names
@@ -42,7 +42,7 @@ class shibboleth::service(
 					metadata_cert_file		=> $metadata_cert_file,
 					metadate_cert_path		=> $metadate_cert_path,
 					metadata_provider_URL	=> $metadata_provider_URL,
-					metadata_provider_file	=> $metadata_provider_file
+					metadata_provider_file	=> $metadata_provider_file,
 					httpd					=> $httpd,
 					sp_domainname 			=> $sp_domainname,
 					handler_ssl				=> $handler_ssl,
