@@ -7,13 +7,18 @@
 
 class shibboleth::service::install(
 	$metadata_cert_URL,
+	$metadate_cert_file,
+	$metadata_cert_path,
 	$metadata_provider_URL,
+	$metadata_provider_file,
 	$httpd,
 	$sp_domainname,
 	$handler_ssl,
 	$discovery_URL,
 	$idp_URL,
-	$contact_email
+	$contact_email,
+	$attribute_map_URL,
+	$attribute_map_path
 ){
 
 # Install packages
@@ -49,14 +54,6 @@ class shibboleth::service::install(
 		}
 	}
 
-	# Jump to Ruby to get extract the file names
-	$metadata_cert_file 	= inline_template("<%= metadata_cert_URL.split('/').last  %>")
-	$metadata_cert_path 	= "/etc/shibboleth/${metadatacert_file}"
-	
-	$metadata_provider_file = $metadata_provider_URL ? {
-		false	=> undef,
-		default => inline_template("<%= metadata_provider_URL.split('/').last  %>"),
-	}
 
 	exec{'get_metadatacert':
 		path	=> ['/usr/bin'],
@@ -72,5 +69,15 @@ class shibboleth::service::install(
 		content => template('shibboleth/shibboleth2.xml.erb'),
 		require	=> Package[$mod_shib],
 		notify 	=> Service[$httpd],
+	}
+
+	if $attribute_map_URL {
+		exec{'get_attribute_map':
+			path	=> ['/usr/bin'],
+			command => "wget ${attribute_map_URL} -O ${attribute_map_path}",
+			creates => $attribute_map_path,
+			require => Package[$mod_shib],
+			notify	=> Service[$httpd],
+		}
 	}
 }
