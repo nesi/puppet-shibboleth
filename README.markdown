@@ -22,7 +22,11 @@ Or if you're managing your Puppet configuration with git, in your `puppet` direc
 
 It might seem bit excessive, but it will make sure the submodule isn't headless...
 
-# `shibboleth::service` Usage
+# Requirements
+
+Requires a httpd service to be installed, with a SSL module (e.g. Apache2 with mod_ssl)
+
+# Usage
 
 **NOTE:** the URLs provided in the usage guide are examples only, check with your IDp or Federation administrator for the correct details.
 
@@ -54,7 +58,7 @@ To install and configure  a SP to use a Directory service provided by a Shibbole
 
 * *metadata_cert_URL* Required. A URL to download the metadata signing certificate from.
 * *metadata_provider_URL* The source of the Federation metadata.
-* *httpd* Required. The name of the `httpd` serveice to be restarted.
+* *httpd* Required. The name of the `httpd` service to be restarted.
 * *sp_domainname* The name of the Service Provider, defaults to `$fqdn`
 * *handler_ssl* Enables the SSL handler, defaults to false.
 * *discovery_URL* URL to the Federation discovery service
