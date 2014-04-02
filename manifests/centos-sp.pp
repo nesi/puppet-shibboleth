@@ -65,4 +65,5 @@ class shibboleth::centos-sp(
     }	     
  
     service {"shibd": ensure => running}
+
 }
