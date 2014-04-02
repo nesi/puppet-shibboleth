@@ -29,7 +29,7 @@ class shibboleth::centos-sp(
       owner => root,	
       group => root,
       mode => 644,
-      content => template("shibboleth/shibboleth2.xml.erb"),
+      content => template("shibboleth/shibboleth2.centos.xml.erb"),
       notify => Service["shibd"],
       require => Package["shibboleth"]
     }	     
@@ -39,7 +39,7 @@ class shibboleth::centos-sp(
       owner => root,	
       group => root,
       mode => 644,
-      content => template("shibboleth/attribute-map.xml.erb"),
+      content => template("shibboleth/attribute-map.centos.xml.erb"),
       notify => Service["shibd"],
       require => Package["shibboleth"]
     }
@@ -59,7 +59,7 @@ class shibboleth::centos-sp(
       owner => root,	
       group => root,
       mode => 644,
-      content => template("shibboleth/attribute-policy.xml.erb"),
+      content => template("shibboleth/attribute-policy.centos.xml.erb"),
       notify => Service["shibd"],
       require => Package["shibboleth"]
     }	     
