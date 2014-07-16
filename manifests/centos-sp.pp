@@ -3,7 +3,8 @@ class shibboleth::centos-sp(
   $entityID,
   $discoveryURL,
   $supportContact,
-  $metadataSources) {
+  $metadataSources,
+  $attributePrefix) {
 
     case $lsbmajdistrelease {
       5: { $repo = "CentOS_5" }
